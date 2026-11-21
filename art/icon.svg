@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Background Squircle Container: Obsidian Slate -->
+  <rect width="512" height="512" rx="112" fill="#09090B" />
+  <rect width="510" height="510" x="1" y="1" rx="111" fill="none" stroke="#27272A" stroke-width="1.5" />
+
+  <!-- The Waveform Drop Icon Only (Optically Centered) -->
+  <g transform="translate(0, 10)">
+    <!-- Droplet Outline -->
+    <path d="M 256,132
+             C 236,174 168,266 168,316
+             C 168,364.6 207.4,404 256,404
+             C 304.6,404 344,364.6 344,316
+             C 344,266 276,174 256,132 Z"
+          fill="none" stroke="#EDEDED" stroke-width="22" stroke-linejoin="round" />
+
+    <!-- 3 Internal Waveform Bars -->
+    <rect x="234" y="248" width="44" height="18" rx="9" fill="#EDEDED" />
+    <rect x="212" y="284" width="88" height="18" rx="9" fill="#EDEDED" />
+    <rect x="226" y="320" width="60" height="18" rx="9" fill="#EDEDED" />
+  </g>
+</svg>

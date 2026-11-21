@@ -1,0 +1,100 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="120dp"
+    android:viewportWidth="240"
+    android:viewportHeight="120">
+
+    <!-- Arka Plan Yumuşak Glow / Alan -->
+    <path
+        android:fillColor="#121820"
+        android:pathData="M16,16 h208 a16,16 0 0 1 16,16 v56 a16,16 0 0 1 -16,16 h-208 a16,16 0 0 1 -16,-16 v-56 a16,16 0 0 1 16,-16 z" />
+
+    <!-- SOL CİHAZ (Gönderen Telefon) Gövdesi -->
+    <path
+        android:fillColor="#27272A"
+        android:pathData="M38,20 h42 a8,8 0 0 1 8,8 v64 a8,8 0 0 1 -8,8 h-42 a8,8 0 0 1 -8,-8 v-64 a8,8 0 0 1 8,-8 z" />
+    <!-- Sol Cihaz Ekranı -->
+    <path
+        android:fillColor="#18181B"
+        android:pathData="M42,26 h34 a4,4 0 0 1 4,4 v52 a4,4 0 0 1 -4,4 h-34 a4,4 0 0 1 -4,-4 v-52 a4,4 0 0 1 4,-4 z" />
+    <!-- Sol Cihaz Üst Ahize -->
+    <path
+        android:fillColor="#3F3F46"
+        android:pathData="M54,23 h10 a1,1 0 0 1 1,1 v0 a1,1 0 0 1 -1,1 h-10 a1,1 0 0 1 -1,-1 v0 a1,1 0 0 1 1,-1 z" />
+    <!-- Sol Cihaz Dosya Simgesi -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M53,46 h10 l4,4 v14 a2,2 0 0 1 -2,2 h-12 a2,2 0 0 1 -2,-2 v-16 a2,2 0 0 1 2,-2 z" />
+    <path
+        android:fillColor="#059669"
+        android:pathData="M63,46 v4 h4 z" />
+
+    <!-- SAĞ CİHAZ (Alıcı Telefon) Gövdesi -->
+    <path
+        android:fillColor="#27272A"
+        android:pathData="M160,20 h42 a8,8 0 0 1 8,8 v64 a8,8 0 0 1 -8,8 h-42 a8,8 0 0 1 -8,-8 v-64 a8,8 0 0 1 8,-8 z" />
+    <!-- Sağ Cihaz Ekranı -->
+    <path
+        android:fillColor="#18181B"
+        android:pathData="M164,26 h34 a4,4 0 0 1 4,4 v52 a4,4 0 0 1 -4,4 h-34 a4,4 0 0 1 -4,-4 v-52 a4,4 0 0 1 4,-4 z" />
+    <!-- Sağ Cihaz Üst Ahize -->
+    <path
+        android:fillColor="#3F3F46"
+        android:pathData="M176,23 h10 a1,1 0 0 1 1,1 v0 a1,1 0 0 1 -1,1 h-10 a1,1 0 0 1 -1,-1 v0 a1,1 0 0 1 1,-1 z" />
+    <!-- Sağ Cihaz İndirme Simgesi (Web Tarayıcı İndirme) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M176,46 h10 a2,2 0 0 1 2,2 v14 a2,2 0 0 1 -2,2 h-10 a2,2 0 0 1 -2,-2 v-14 a2,2 0 0 1 2,-2 z" />
+    <path
+        android:fillColor="#09090B"
+        android:pathData="M181,50 v6 m-3,-3 l3,3 l3,-3"
+        android:strokeWidth="1.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- ORTA ALAN: NFC & P2P RADYASYON DALGALARI -->
+    <!-- Sol Cihazdan Yayılan Dalga -->
+    <path
+        android:pathData="M97,44 A24,24 0 0,1 97,76"
+        android:strokeWidth="2.5"
+        android:strokeColor="#10B981"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M103,48 A16,16 0 0,1 103,72"
+        android:strokeWidth="2"
+        android:strokeColor="#34D399"
+        android:strokeLineCap="round" />
+
+    <!-- Orta Temas / Dokunma Kıvılcımı (NFC Chip) -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M120,53 l2,5 l5,2 l-5,2 l-2,5 l-2,-5 l-5,-2 l5,-2 z" />
+
+    <!-- Sağ Cihaza Ulaşan Dalga -->
+    <path
+        android:pathData="M143,44 A24,24 0 0,0 143,76"
+        android:strokeWidth="2.5"
+        android:strokeColor="#38BDF8"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M137,48 A16,16 0 0,0 137,72"
+        android:strokeWidth="2"
+        android:strokeColor="#7DD3FC"
+        android:strokeLineCap="round" />
+
+    <!-- Dokunma Yönü Okları (Karşılıklı Yaklaşım) -->
+    <path
+        android:pathData="M94,60 h10 m-3,-3 l3,3 l-3,3"
+        android:strokeWidth="1.5"
+        android:strokeColor="#A1A1AA"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M146,60 h-10 m3,-3 l-3,3 l3,3"
+        android:strokeWidth="1.5"
+        android:strokeColor="#A1A1AA"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+</vector>

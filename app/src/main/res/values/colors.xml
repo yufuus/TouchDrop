@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern iOS Grimsi Aydınlık / Cool Slate & Zinc Gray (Gözü Yormayan Mat Gri) -->
+    <color name="bg_root">#F1F1F4</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_card_secondary">#E8E8ED</color>
+    <color name="border_subtle">#DFDFE6</color>
+    <color name="border_active">#CECED8</color>
+
+    <color name="text_primary">#09090B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_muted">#94A3B8</color>
+
+    <color name="accent_emerald">#10B981</color>
+    <color name="accent_blue">#2563EB</color>
+    <color name="accent_amber">#D97706</color>
+
+    <color name="btn_primary_bg">#09090B</color>
+    <color name="btn_primary_text">#FFFFFF</color>
+    <color name="btn_secondary_bg">#E8E8ED</color>
+    <color name="btn_secondary_text">#09090B</color>
+
+    <color name="mode_active_bg">#DFDFE6</color>
+    <color name="mode_active_emerald_bg">#D1FAE5</color>
+
+    <!-- Material Theme Mappings (Day) -->
+    <color name="md_theme_primary">#09090B</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#E8E8ED</color>
+    <color name="md_theme_onPrimaryContainer">#09090B</color>
+    <color name="md_theme_background">#F1F1F4</color>
+    <color name="md_theme_onBackground">#09090B</color>
+    <color name="md_theme_surface">#FFFFFF</color>
+    <color name="md_theme_surfaceVariant">#E8E8ED</color>
+    <color name="md_theme_onSurfaceVariant">#64748B</color>
+</resources>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TouchDrop</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ========================================================
+       APPLE (iOS / Cupertino) THEME
+       ======================================================== */
+    body.ios-theme {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      background-color: #F2F2F7;
+      color: #000000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body.ios-theme {
+        background-color: #000000;
+        color: #FFFFFF;
+      }
+    }
+
+    .ios-theme .card {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .ios-theme .card {
+        background: rgba(28, 28, 30, 0.85);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .ios-theme .file-icon-box {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      border-radius: 20px;
+      background: #007AFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 16px rgba(0, 122, 255, 0.25);
+    }
+
+    .ios-theme .file-icon-box svg {
+      width: 40px;
+      height: 40px;
+      fill: #FFFFFF;
+    }
+
+    .ios-theme .file-name {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+
+    .ios-theme .file-size {
+      font-size: 15px;
+      color: #8E8E93;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    .ios-theme .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: #007AFF;
+      color: #FFFFFF;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+
+    .ios-theme .btn-primary:active {
+      transform: scale(0.98);
+      background: #0062CC;
+    }
+
+    .ios-theme .btn-secondary {
+      display: inline-block;
+      margin-top: 16px;
+      color: #007AFF;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* ========================================================
+       MATERIAL 3 (Android / One UI) THEME
+       ======================================================== */
+    body.android-theme {
+      font-family: 'Roboto', 'Google Sans', system-ui, -apple-system, sans-serif;
+      background-color: #FEF7FF;
+      color: #1D1B20;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body.android-theme {
+        background-color: #141218;
+        color: #E6E0E9;
+      }
+    }
+
+    .android-theme .card {
+      width: 100%;
+      max-width: 380px;
+      background: #F3EDF7;
+      border-radius: 28px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .android-theme .card {
+        background: #211F26;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .android-theme .file-icon-box {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 20px;
+      border-radius: 28px;
+      background: #E8DEF8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .android-theme .file-icon-box {
+        background: #4A4458;
+      }
+    }
+
+    .android-theme .file-icon-box svg {
+      width: 44px;
+      height: 44px;
+      fill: #6750A4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .android-theme .file-icon-box svg {
+        fill: #D0BCFF;
+      }
+    }
+
+    .android-theme .file-name {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+
+    .android-theme .file-size {
+      font-size: 14px;
+      color: #79747E;
+      margin-bottom: 32px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .android-theme .file-size {
+        color: #938F99;
+      }
+    }
+
+    .android-theme .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 100px;
+      background: #6750A4;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(103, 80, 164, 0.3);
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
+    }
+
+    .android-theme .btn-primary:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 3px rgba(103, 80, 164, 0.4);
+    }
+
+    .android-theme .btn-secondary {
+      display: inline-block;
+      margin-top: 18px;
+      color: #6750A4;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .android-theme .btn-primary {
+        background: #D0BCFF;
+        color: #381E72;
+      }
+      .android-theme .btn-secondary {
+        color: #D0BCFF;
+      }
+    }
+
+    /* Gizli dosya seçici */
+    #uploadInput {
+      display: none;
+    }
+    
+    .status-msg {
+      margin-top: 16px;
+      font-size: 14px;
+      opacity: 0.8;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="file-icon-box" id="fileIcon">
+      <!-- Minimalist Dosya İkonu -->
+      <svg viewBox="0 0 24 24">
+        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+      </svg>
+    </div>
+
+    <div class="file-name" id="fileName">Dosya Bekleniyor...</div>
+    <div class="file-size" id="fileSize">-- MB</div>
+
+    <a href="#" class="btn-primary" id="downloadBtn">İndir</a>
+
+    <!-- Çift yönlü dosya yükleme -->
+    <input type="file" id="uploadInput" multiple>
+    <button class="btn-secondary" onclick="document.getElementById('uploadInput').click()">
+      Sen de dosya gönder
+    </button>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+  <script>
+    // 1. Cihaz Tespiti: iOS mu Android mi?
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      document.body.classList.add('ios-theme');
+    } else {
+      document.body.classList.add('android-theme');
+    }
+
+    // 2. Sunucudan Dosya Bilgilerini Çekme
+    async function loadFileInfo() {
+      try {
+        const response = await fetch('/api/file-info');
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById('fileName').textContent = data.name;
+          document.getElementById('fileSize').textContent = data.sizeFormatted;
+          document.getElementById('downloadBtn').href = '/api/download';
+        }
+      } catch (err) {
+        console.error('Dosya bilgisi alınamadı:', err);
+      }
+    }
+
+    loadFileInfo();
+
+    // 3. Karşıdan Gelen Dosya Yükleme (Upload) İşlemi
+    const uploadInput = document.getElementById('uploadInput');
+    const statusMsg = document.getElementById('statusMsg');
+
+    uploadInput.addEventListener('change', async (e) => {
+      const files = e.target.files;
+      if (!files.length) return;
+
+      statusMsg.style.display = 'block';
+      statusMsg.textContent = 'Gönderiliyor...';
+
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
+
+      try {
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
+        if (res.ok) {
+          statusMsg.textContent = 'Başarıyla gönderildi!';
+          setTimeout(() => { statusMsg.style.display = 'none'; }, 3000);
+        } else {
+          statusMsg.textContent = 'Gönderme hatası oluştu.';
+        }
+      } catch (err) {
+        statusMsg.textContent = 'Bağlantı hatası.';
+      }
+    });
+  </script>
+</body>
+</html>

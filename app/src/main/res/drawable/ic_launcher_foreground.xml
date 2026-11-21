@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.18"
+        android:scaleY="0.18"
+        android:translateX="8"
+        android:translateY="8">
+        <!-- Droplet Outline -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#EDEDED"
+            android:strokeWidth="20"
+            android:strokeLineJoin="round"
+            android:pathData="M256,132 C236,174 168,266 168,316 C168,364.6 207.4,404 256,404 C304.6,404 344,364.6 344,316 C344,266 276,174 256,132 Z" />
+        <!-- 3 Waveform Bars -->
+        <path
+            android:fillColor="#EDEDED"
+            android:pathData="M234,248 h44 a9,9 0 0,1 9,9 v0 a9,9 0 0,1 -9,9 h-44 a9,9 0 0,1 -9,-9 v0 a9,9 0 0,1 9,-9 z" />
+        <path
+            android:fillColor="#EDEDED"
+            android:pathData="M212,284 h88 a9,9 0 0,1 9,9 v0 a9,9 0 0,1 -9,9 h-88 a9,9 0 0,1 -9,-9 v0 a9,9 0 0,1 9,-9 z" />
+        <path
+            android:fillColor="#EDEDED"
+            android:pathData="M226,320 h60 a9,9 0 0,1 9,9 v0 a9,9 0 0,1 -9,9 h-60 a9,9 0 0,1 -9,-9 v0 a9,9 0 0,1 9,-9 z" />
+    </group>
+</vector>

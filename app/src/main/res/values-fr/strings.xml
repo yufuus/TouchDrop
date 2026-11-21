@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">TouchDrop</string>
+    <string name="nfc_service_desc">Service TouchDrop NFC Tap-to-Share</string>
+    <string name="nfc_aid_group_desc">Émulation de tag NDEF Type 4</string>
+
+    <string name="mode_wifi">Même Wi-Fi</string>
+    <string name="mode_hotspot">Pont Rapide</string>
+    <string name="hint_mode_wifi">• Maison / Bureau : Sur le même Wi-Fi, un simple contact suffit.</string>
+    <string name="hint_mode_hotspot">• Dehors / Réseaux différents : Crée un pont direct sans consommer de données.</string>
+
+    <string name="status_searching">Recherche de connexion...</string>
+    <string name="status_offline">Hors ligne (Démarrer Pont)</string>
+    <string name="status_hold_near">Approcher de l\'appareil</string>
+    <string name="status_prompt_select_file">1. Sélectionner un fichier</string>
+    <string name="status_sub_select_file">Choisissez un fichier, puis rapprochez les téléphones.</string>
+    <string name="status_prompt_tap_phone">Rapprochez les téléphones !</string>
+    <string name="status_sub_tap_phone">Placez les téléphones dos à dos. La page de téléchargement s\'ouvrira automatiquement.</string>
+    <string name="status_wifi_sent">Wi-Fi transmis</string>
+    <string name="status_sub_wifi_sent">Touchez à nouveau pour ouvrir la page et démarrer le transfert.</string>
+    <string name="status_ready_opened">Transfert initié</string>
+    <string name="status_sub_ready_opened">Navigateur ouvert sur le récepteur. Transfert en cours.</string>
+    <string name="status_file_received_title">Fichier reçu !</string>
+    <string name="status_file_received">"Fichier reçu\n%1$s (%2$s)"</string>
+
+    <string name="btn_select_file">Sélectionner fichier</string>
+    <string name="btn_open_file">Ouvrir fichier reçu</string>
+    <string name="btn_test_browser">Ouvrir dans navigateur</string>
+
+    <string name="toast_wifi_sent">Wi-Fi transmis. Touchez à nouveau pour ouvrir la page.</string>
+    <string name="toast_browser_opened">Page de téléchargement ouverte.</string>
+    <string name="toast_hotspot_active">Pont rapide actif. Rapprochez les appareils.</string>
+    <string name="toast_hotspot_stopped">Retour au mode même Wi-Fi.</string>
+    <string name="toast_file_saved">"%1$d fichier(s) enregistré(s) : %2$s"</string>
+    <string name="toast_nfc_disabled">NFC désactivé. Veuillez l\'activer dans Paramètres.</string>
+    <string name="toast_nfc_missing">Aucun matériel NFC trouvé.</string>
+
+    <string name="btn_skip">Passer</string>
+    <string name="btn_next">Suivant</string>
+    <string name="btn_got_it">Compris</string>
+    <string name="btn_done">Terminé</string>
+
+    <string name="settings_title">Paramètres &amp; Confidentialité</string>
+    <string name="settings_version_info">TouchDrop v1.8.9 • P2P Hors ligne &amp; Open Source</string>
+    <string name="settings_section_theme">APPARENCE &amp; THÈME</string>
+    <string name="theme_light">Clair (Gris)</string>
+    <string name="theme_obsidian">Obsidienne</string>
+    <string name="theme_system">Système</string>
+
+    <string name="settings_section_language">LANGUE DE L\'APPLICATION</string>
+    <string name="settings_section_permissions">PERMISSIONS &amp; TRANSPARENCE</string>
+    <string name="settings_section_legal">CONFIDENTIALITÉ &amp; MENTIONS LÉGALES</string>
+
+    <string name="perm_nfc_title">NFC (Communication en champ proche)</string>
+    <string name="perm_nfc_desc">Transfère le lien de téléchargement instantanément au contact. Ne tourne jamais en arrière-plan.</string>
+    <string name="perm_wifi_title">Wi-Fi &amp; Réseau Local</string>
+    <string name="perm_wifi_desc">Transfère les fichiers directement entre appareils à vitesse gigabit sans aucun cloud.</string>
+    <string name="perm_hotspot_title">Pont Rapide &amp; Appareils à proximité</string>
+    <string name="perm_hotspot_desc">Crée un pont local sécurisé et chiffré en déplacement quand aucun Wi-Fi n\'est disponible.</string>
+    <string name="perm_storage_title">Stockage et Accès aux Fichiers</string>
+    <string name="perm_storage_desc">Accède uniquement aux fichiers sélectionnés et enregistre dans \'Téléchargements/TouchDrop\'.</string>
+
+    <string name="legal_p2p_title">100% Peer-to-Peer (Zéro Cloud)</string>
+    <string name="legal_p2p_desc">Tous les transferts se font directement entre appareils sur le réseau local sans aucun serveur externe.</string>
+    <string name="legal_kvkk_title">Conforme RGPD &amp; Confidentialité</string>
+    <string name="legal_kvkk_desc">Aucune donnée personnelle ne quitte votre appareil, garantissant une conformité totale au RGPD.</string>
+    <string name="legal_notrack_title">Zéro Collecte de Données</string>
+    <string name="legal_notrack_desc">Aucun suivi, aucune télémétrie ni cookie. Basé sur une architecture open source transparente.</string>
+
+    <!-- Écran d'aide : Titres et onglets sur 2 lignes -->
+    <string name="help_title_main">Comment utiliser TouchDrop ?</string>
+    <string name="help_tab_wifi_title">Même Wi-Fi</string>
+    <string name="help_tab_wifi_sub">1 Seul Contact</string>
+    <string name="help_tab_bridge_title">Pont Rapide</string>
+    <string name="help_tab_bridge_sub">2 Contacts</string>
+
+    <!-- Mode 1: Même Wi-Fi -->
+    <string name="help_wifi_slide1_badge">MÊME WI-FI • ÉTAPE 1</string>
+    <string name="help_wifi_slide1_title">1. Choisissez un fichier</string>
+    <string name="help_wifi_slide1_desc">Sélectionnez n\'importe quelle photo, vidéo ou fichier. TouchDrop prépare le streaming local instantanément.</string>
+
+    <string name="help_wifi_slide2_badge">MÊME WI-FI • ÉTAPE 2 (UN SEUL CONTACT)</string>
+    <string name="help_wifi_slide2_title">2. Rapprochez une seule fois !</string>
+    <string name="help_wifi_slide2_desc">Sur le même Wi-Fi, UN SEUL CONTACT suffit ! Rapprochez les appareils dos à dos ; la page s\'ouvre et le fichier se télécharge à vitesse gigabit.</string>
+
+    <string name="help_wifi_slide3_badge">MÊME WI-FI • ÉTAPE 3 (ZÉRO INSTALLATION)</string>
+    <string name="help_wifi_slide3_title">3. Téléchargement direct dans le navigateur</string>
+    <string name="help_wifi_slide3_desc">Aucune application requise sur l\'autre téléphone ! Que ce soit iPhone (Safari) ou Android (Chrome), téléchargement direct via navigateur.</string>
+
+    <!-- Mode 2: Pont Rapide -->
+    <string name="help_bridge_slide1_badge">PONT RAPIDE • 1ER CONTACT (CONNEXION)</string>
+    <string name="help_bridge_slide1_title">1er Contact : Connexion au Wi-Fi</string>
+    <string name="help_bridge_slide1_desc">En déplacement sans Wi-Fi partagé, rapprochez les téléphones DEUX FOIS. Le 1ER CONTACT connecte le récepteur à votre pont.</string>
+
+    <string name="help_bridge_slide2_badge">PONT RAPIDE • 2ÈME CONTACT (TÉLÉCHARGEMENT)</string>
+    <string name="help_bridge_slide2_title">2ème Contact : Démarrer le transfert</string>
+    <string name="help_bridge_slide2_desc">Une fois connecté, rapprochez une SECONDE FOIS. Le navigateur s\'ouvre automatiquement et le fichier se transfère !</string>
+
+    <string name="help_bridge_slide3_badge">PONT RAPIDE • ÉTAPE 3 (ZÉRO INSTALLATION)</string>
+    <string name="help_bridge_slide3_title">3. Téléchargement direct dans le navigateur</string>
+    <string name="help_bridge_slide3_desc">Ni données mobiles ni application requise sur le récepteur. Transfert direct à haute vitesse.</string>
+</resources>

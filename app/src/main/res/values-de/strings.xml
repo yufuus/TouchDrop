@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">TouchDrop</string>
+    <string name="nfc_service_desc">TouchDrop NFC Tap-to-Share Dienst</string>
+    <string name="nfc_aid_group_desc">NDEF Type 4 Tag Emulation</string>
+
+    <string name="mode_wifi">Gleiches WLAN</string>
+    <string name="mode_hotspot">Schnellbrücke</string>
+    <string name="hint_mode_wifi">• Zu Hause / Büro: Im selben WLAN reicht einmaliges Berühren.</string>
+    <string name="hint_mode_hotspot">• Unterwegs / Verschiedene Netze: Erstellt direkte Verbindung.</string>
+
+    <string name="status_searching">Suche Verbindung...</string>
+    <string name="status_offline">Offline (Hotspot-Brücke starten)</string>
+    <string name="status_hold_near">An Gerät halten</string>
+    <string name="status_prompt_select_file">1. Datei auswählen</string>
+    <string name="status_sub_select_file">Wählen Sie eine Datei und halten Sie die Telefone aneinander.</string>
+    <string name="status_prompt_tap_phone">Geräte aneinanderhalten!</string>
+    <string name="status_sub_tap_phone">Rücken an Rücken halten. Die Download-Seite öffnet sich automatisch.</string>
+    <string name="status_wifi_sent">WLAN übermittelt</string>
+    <string name="status_sub_wifi_sent">Erneut berühren, um Download-Seite im Browser zu öffnen.</string>
+    <string name="status_ready_opened">Übertragung gestartet</string>
+    <string name="status_sub_ready_opened">Browser geöffnet. Dateiübertragung läuft.</string>
+    <string name="status_file_received_title">Datei empfangen!</string>
+    <string name="status_file_received">"Datei empfangen\n%1$s (%2$s)"</string>
+
+    <string name="btn_select_file">Datei auswählen</string>
+    <string name="btn_open_file">Empfangene Datei öffnen</string>
+    <string name="btn_test_browser">Im Browser öffnen</string>
+
+    <string name="toast_wifi_sent">WLAN übertragen. Erneut berühren zum Öffnen.</string>
+    <string name="toast_browser_opened">Download-Seite geöffnet.</string>
+    <string name="toast_hotspot_active">Schnellbrücke aktiv. Geräte aneinanderhalten.</string>
+    <string name="toast_hotspot_stopped">Zu gleichem WLAN-Modus gewechselt.</string>
+    <string name="toast_file_saved">"%1$d Datei(en) gespeichert: %2$s"</string>
+    <string name="toast_nfc_disabled">NFC deaktiviert. Bitte in Einstellungen aktivieren.</string>
+    <string name="toast_nfc_missing">Keine NFC-Hardware gefunden.</string>
+
+    <string name="btn_skip">Überspringen</string>
+    <string name="btn_next">Weiter</string>
+    <string name="btn_got_it">Verstanden</string>
+    <string name="btn_done">Fertig</string>
+
+    <string name="settings_title">Einstellungen &amp; Datenschutz</string>
+    <string name="settings_version_info">TouchDrop v1.8.9 • Offline P2P &amp; Open Source</string>
+    <string name="settings_section_theme">ERSCHEINUNGSBILD &amp; THEMA</string>
+    <string name="theme_light">Hell (Grau)</string>
+    <string name="theme_obsidian">Obsidian</string>
+    <string name="theme_system">System</string>
+
+    <string name="settings_section_language">APP-SPRACHE</string>
+    <string name="settings_section_permissions">BERECHTIGUNGEN &amp; TRANSPARENZ</string>
+    <string name="settings_section_legal">DATENSCHUTZ &amp; RECHTLICHES</string>
+
+    <string name="perm_nfc_title">NFC (Nahfeldkommunikation)</string>
+    <string name="perm_nfc_desc">Überträgt den Download-Link sofort bei Berührung. Läuft nie im Hintergrund.</string>
+    <string name="perm_wifi_title">WLAN &amp; Lokales Netzwerk</string>
+    <string name="perm_wifi_desc">Überträgt Dateien direkt zwischen Geräten im lokalen Netz in Gigabit-Geschwindigkeit ohne Cloud.</string>
+    <string name="perm_hotspot_title">Schnellbrücke &amp; Geräte in der Nähe</string>
+    <string name="perm_hotspot_desc">Erstellt eine temporäre, verschlüsselte lokale Brücke, wenn kein WLAN verfügbar ist.</string>
+    <string name="perm_storage_title">Speicher- und Dateizugriff</string>
+    <string name="perm_storage_desc">Greift nur auf ausgewählte Dateien zu und speichert empfangene Dateien unter \'Downloads/TouchDrop\'.</string>
+
+    <string name="legal_p2p_title">100% Peer-to-Peer (Keine Cloud)</string>
+    <string name="legal_p2p_desc">Alle Dateiübertragungen laufen direkt zwischen Geräten. Keine Datei oder Metadaten berühren externe Server.</string>
+    <string name="legal_kvkk_title">DSGVO &amp; Datenschutz-Konform</string>
+    <string name="legal_kvkk_desc">Es verlassen keine personenbezogenen Daten das Gerät – vollständig DSGVO-konform.</string>
+    <string name="legal_notrack_title">Keine Datenerfassung &amp; Open Source</string>
+    <string name="legal_notrack_desc">Kein Tracking, keine Telemetrie, keine Cookies. Vollständig transparente Open-Source-Technologie.</string>
+
+    <!-- Hilfe-Bildschirm: Titel & 2-Zeilige Tabs -->
+    <string name="help_title_main">Wie funktioniert TouchDrop?</string>
+    <string name="help_tab_wifi_title">Gleiches WLAN</string>
+    <string name="help_tab_wifi_sub">1x Berühren</string>
+    <string name="help_tab_bridge_title">Schnellbrücke</string>
+    <string name="help_tab_bridge_sub">2x Berühren</string>
+
+    <!-- Modus 1: Gleiches WLAN -->
+    <string name="help_wifi_slide1_badge">GLEICHES WLAN • SCHRITT 1</string>
+    <string name="help_wifi_slide1_title">1. Datei auswählen</string>
+    <string name="help_wifi_slide1_desc">Wählen Sie ein Foto, Video oder Dokument. TouchDrop bereitet das lokale P2P-Streaming sofort vor.</string>
+
+    <string name="help_wifi_slide2_badge">GLEICHES WLAN • SCHRITT 2 (1 BERÜHRUNG)</string>
+    <string name="help_wifi_slide2_title">2. Nur 1x aneinanderhalten!</string>
+    <string name="help_wifi_slide2_desc">Im selben WLAN reicht eine einzige Berührung! Telefone Rücken an Rücken halten; die Download-Seite öffnet sich sofort.</string>
+
+    <string name="help_wifi_slide3_badge">GLEICHES WLAN • SCHRITT 3</string>
+    <string name="help_wifi_slide3_title">3. Empfänger lädt im Browser</string>
+    <string name="help_wifi_slide3_desc">Keine App beim Empfänger nötig! Egal ob iPhone (Safari) oder Android (Chrome), der Download startet direkt im Browser.</string>
+
+    <!-- Modus 2: Schnellbrücke -->
+    <string name="help_bridge_slide1_badge">SCHNELLBRÜCKE • 1. BERÜHRUNG (VERBINDUNG)</string>
+    <string name="help_bridge_slide1_title">1. Berührung: WLAN verbinden</string>
+    <string name="help_bridge_slide1_desc">Unterwegs ohne WLAN 2x aneinanderhalten. Die ERSTE Berührung verbindet den Empfänger automatisch mit Ihrem Hotspot.</string>
+
+    <string name="help_bridge_slide2_badge">SCHNELLBRÜCKE • 2. BERÜHRUNG (DOWNLOAD)</string>
+    <string name="help_bridge_slide2_title">2. Berührung: Download starten</string>
+    <string name="help_bridge_slide2_desc">Sobald verbunden, ein ZWEITES MAL aneinanderhalten. Der Browser öffnet sich automatisch und überträgt die Datei!</string>
+
+    <string name="help_bridge_slide3_badge">SCHNELLBRÜCKE • SCHRITT 3</string>
+    <string name="help_bridge_slide3_title">3. Direkt im Browser laden</string>
+    <string name="help_bridge_slide3_desc">Kein Datenvolumen und keine App erforderlich. Dateiübertragung läuft direkt über die Hochgeschwindigkeitsbrücke.</string>
+</resources>

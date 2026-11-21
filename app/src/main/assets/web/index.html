@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TouchDrop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090B;
+      --card-bg: rgba(18, 18, 21, 0.82);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.16);
+      --text-primary: #FAFAFA;
+      --text-secondary: #A1A1AA;
+      --text-muted: #71717A;
+      --accent: #3B82F6;
+      --emerald: #10B981;
+      --btn-bg: #FFFFFF;
+      --btn-text: #09090B;
+      --btn-hover: #F4F4F5;
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.06) 0%, transparent 40%),
+                  var(--bg);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Top Nav: Status & Lang Selector */
+    .top-bar {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(24, 24, 27, 0.85);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      background: rgba(24, 24, 27, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+    }
+
+    .lang-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+    }
+
+    /* Main Container & Card */
+    .app-container {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .card {
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 34px 24px 28px;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.65),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    /* Spotlight gradient on the card surface (Aceternity / Magic UI style) */
+    .card-spotlight {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      background: radial-gradient(circle 240px at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.05), transparent 80%);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    }
+
+    /* Radar Rings & File Icon Container */
+    .icon-container {
+      position: relative;
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Radar ripple animation when waiting */
+    .radar-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      animation: ripple 2.4s infinite cubic-bezier(0, 0.2, 0.8, 1);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .radar-ring:nth-child(2) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes ripple {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    .file-icon-wrapper {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+    }
+
+    .file-icon-wrapper svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--text-primary);
+      stroke-width: 1.8;
+      fill: none;
+    }
+
+    .ext-badge {
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: #18181B;
+      border: 1px solid var(--border);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      z-index: 3;
+    }
+
+    /* Spring entrance pop on file ready */
+    .pop-in {
+      animation: spring-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes spring-pop {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* File Meta */
+    .file-name {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      word-break: break-word;
+      line-height: 1.35;
+      min-height: 26px;
+    }
+
+    .file-size {
+      font-size: 13px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+    }
+
+    /* Primary Button with Magic UI Shimmer Effect */
+    .btn-download {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.16);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    /* Shimmer light sweep */
+    .btn-download::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 70%
+      );
+      transform: rotate(30deg);
+      animation: shimmer-sweep 4s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer-sweep {
+      0% { transform: translateX(-150%) rotate(30deg); }
+      30%, 100% { transform: translateX(150%) rotate(30deg); }
+    }
+
+    .btn-download:hover {
+      background: var(--btn-hover);
+      box-shadow: 0 6px 22px rgba(255, 255, 255, 0.26);
+      transform: translateY(-1px);
+    }
+
+    .btn-download:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-download.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+      box-shadow: none;
+      background: #27272A;
+      color: var(--text-muted);
+    }
+
+    .btn-download.disabled::after {
+      display: none;
+    }
+
+    .btn-download svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0 20px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider span {
+      padding: 0 12px;
+    }
+
+    /* Secondary Action: Upload */
+    .upload-zone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed var(--border);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .upload-zone:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-primary);
+    }
+
+    .upload-zone:active {
+      transform: scale(0.98);
+    }
+
+    .upload-zone svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    #uploadInput {
+      display: none;
+    }
+
+    /* Progress & Status Message */
+    .progress-wrapper {
+      margin-top: 14px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--emerald);
+      border-radius: 2px;
+      transition: width 0.25s ease;
+    }
+
+    .status-msg {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .status-msg svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--emerald);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* Footer */
+    .footer-brand {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-brand svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <!-- Header Status Pill -->
+    <div class="status-pill">
+      <span class="pulse-dot"></span>
+      <span id="txtHeaderStatus">Bağlantı Hazır</span>
+    </div>
+
+    <!-- Multi-Language Switcher -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLanguage('tr')">TR</button>
+      <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+      <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+      <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Main Card with Interactive Spotlight -->
+    <div class="card" id="card">
+      <div class="card-spotlight"></div>
+
+      <div class="icon-container">
+        <div class="radar-ring" id="radar1"></div>
+        <div class="radar-ring" id="radar2"></div>
+        <div class="file-icon-wrapper" id="fileIcon">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+            <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+          </svg>
+          <div class="ext-badge" id="extBadge">WAIT</div>
+        </div>
+      </div>
+
+      <div class="file-name" id="fileName">Dosya Bekleniyor...</div>
+      <div class="file-size" id="fileSize">-- MB</div>
+
+      <!-- Primary Action -->
+      <a href="#" class="btn-download disabled" id="downloadBtn">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span id="txtBtnDownload">Dosya Bekleniyor...</span>
+      </a>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span id="txtDivider">veya</span>
+      </div>
+
+      <!-- Secondary Bidirectional Action -->
+      <input type="file" id="uploadInput" multiple>
+      <div class="upload-zone" onclick="document.getElementById('uploadInput').click()">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <span id="txtBtnUpload">Sen de dosya gönder</span>
+      </div>
+
+      <!-- Progress Container -->
+      <div class="progress-wrapper" id="progressWrapper">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="status-msg" id="statusMsg"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-brand">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      <span id="txtFooter">Uçtan Uca Doğrudan Aktarım</span>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. ÇOKLU DİL MOTORU (TR, EN, DE, ES, FR)
+    // =========================================================================
+    const I18N = {
+      tr: {
+        headerStatus: "Bağlantı Hazır",
+        waitingTitle: "Dosya Bekleniyor...",
+        waitingSub: "Gönderici cihazdan dosya seçildiğinde hazır olacaktır.",
+        btnDownload: "İndir",
+        btnWaiting: "Dosya Seçimi Bekleniyor...",
+        divider: "veya",
+        btnUpload: "Sen de dosya gönder",
+        uploading: "Aktarılıyor...",
+        uploadSuccess: "Dosya başarıyla iletildi",
+        uploadError: "Aktarım hatası oluştu.",
+        connError: "Bağlantı hatası.",
+        footer: "TouchDrop • Uçtan Uca Doğrudan P2P Aktarım"
+      },
+      en: {
+        headerStatus: "Live Connection",
+        waitingTitle: "Waiting for Sender...",
+        waitingSub: "Will be ready once the sender selects a file.",
+        btnDownload: "Download",
+        btnWaiting: "Waiting for File Selection...",
+        divider: "or",
+        btnUpload: "Send files back",
+        uploading: "Uploading...",
+        uploadSuccess: "File sent successfully",
+        uploadError: "Upload error occurred.",
+        connError: "Connection error.",
+        footer: "TouchDrop • End-to-End Direct P2P Transfer"
+      },
+      de: {
+        headerStatus: "Live-Verbindung",
+        waitingTitle: "Warten auf Absender...",
+        waitingSub: "Bereit, sobald der Absender eine Datei auswählt.",
+        btnDownload: "Herunterladen",
+        btnWaiting: "Warten auf Dateiauswahl...",
+        divider: "oder",
+        btnUpload: "Datei zurücksenden",
+        uploading: "Wird gesendet...",
+        uploadSuccess: "Datei erfolgreich gesendet",
+        uploadError: "Übertragungsfehler.",
+        connError: "Verbindungsfehler.",
+        footer: "Ende-zu-Ende Direktübertragung"
+      },
+      es: {
+        headerStatus: "Conexión Activa",
+        waitingTitle: "Esperando archivo...",
+        waitingSub: "Estará listo en cuanto el remitente elija un archivo.",
+        btnDownload: "Descargar",
+        btnWaiting: "Esperando selección de archivo...",
+        divider: "o",
+        btnUpload: "Enviar archivo",
+        uploading: "Enviando...",
+        uploadSuccess: "Archivo enviado con éxito",
+        uploadError: "Error al enviar.",
+        connError: "Error de conexión.",
+        footer: "Transferencia directa punto a punto"
+      },
+      fr: {
+        headerStatus: "Connexion Active",
+        waitingTitle: "En attente du fichier...",
+        waitingSub: "Sera prêt dès que l'expéditeur aura sélectionné un fichier.",
+        btnDownload: "Télécharger",
+        btnWaiting: "En attente du fichier...",
+        divider: "ou",
+        btnUpload: "Envoyer un fichier",
+        uploading: "Envoi en cours...",
+        uploadSuccess: "Fichier envoyé avec succès",
+        uploadError: "Erreur lors de l'envoi.",
+        connError: "Erreur de connexion.",
+        footer: "Transfert direct de bout en bout"
+      }
+    };
+
+    let currentLang = 'tr';
+    const browserLang = (navigator.language || 'tr').substring(0, 2).toLowerCase();
+    if (I18N[browserLang]) {
+      currentLang = browserLang;
+    }
+
+    function setLanguage(lang) {
+      if (!I18N[lang]) return;
+      currentLang = lang;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+
+      const t = I18N[lang];
+      document.getElementById('txtHeaderStatus').textContent = t.headerStatus;
+      document.getElementById('txtDivider').textContent = t.divider;
+      document.getElementById('txtBtnUpload').textContent = t.btnUpload;
+      document.getElementById('txtFooter').textContent = t.footer;
+
+      if (!hasActiveFile) {
+        document.getElementById('fileName').textContent = t.waitingTitle;
+        document.getElementById('fileSize').textContent = t.waitingSub;
+        document.getElementById('txtBtnDownload').textContent = t.btnWaiting;
+      } else {
+        document.getElementById('txtBtnDownload').textContent = t.btnDownload;
+      }
+    }
+
+    // =========================================================================
+    // 2. SPOTLIGHT ETKİLEŞİMİ (Aceternity / Magic UI)
+    // =========================================================================
+    const card = document.getElementById('card');
+    function updateSpotlight(e) {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX || (e.touches && e.touches[0].clientX) || 0) - rect.left;
+      const y = (e.clientY || (e.touches && e.touches[0].clientY) || 0) - rect.top;
+      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+    }
+    window.addEventListener('mousemove', updateSpotlight);
+    window.addEventListener('touchmove', updateSpotlight, { passive: true });
+
+    // =========================================================================
+    // 3. GERÇEK ZAMANLI DOSYA DURUMU & OTOMATİK DÖNÜŞÜM (POLLING)
+    // =========================================================================
+    let hasActiveFile = false;
+    let previousFileName = null;
+
+    async function checkFileStatus() {
+      try {
+        const response = await fetch('/api/file-info', { cache: 'no-store' });
+        if (response.ok) {
+          const data = await response.json();
+          const t = I18N[currentLang];
+
+          if (data.hasFile) {
+            hasActiveFile = true;
+            document.getElementById('downloadBtn').classList.remove('disabled');
+            document.getElementById('downloadBtn').href = '/api/download';
+            document.getElementById('txtBtnDownload').textContent = t.btnDownload;
+
+            // Radar halkalarını kapat
+            document.getElementById('radar1').style.display = 'none';
+            document.getElementById('radar2').style.display = 'none';
+
+            // Dosya adı veya boyutu değiştiyse bahar animasyonuyla göster
+            if (previousFileName !== data.name) {
+              previousFileName = data.name;
+              const cardEl = document.getElementById('card');
+              cardEl.classList.remove('pop-in');
+              void cardEl.offsetWidth; // reflow tetikle
+              cardEl.classList.add('pop-in');
+
+              if (navigator.vibrate) {
+                navigator.vibrate([40, 60, 40]);
+              }
+            }
+
+            document.getElementById('fileName').textContent = data.name;
+            document.getElementById('fileSize').textContent = data.sizeFormatted;
+
+            // Uzantı rozeti
+            const ext = data.name.includes('.') ? data.name.split('.').pop().toUpperCase() : 'FILE';
+            document.getElementById('extBadge').textContent = ext.substring(0, 4);
+          } else {
+            hasActiveFile = false;
+            previousFileName = null;
+            document.getElementById('downloadBtn').classList.add('disabled');
+            document.getElementById('downloadBtn').removeAttribute('href');
+            document.getElementById('txtBtnDownload').textContent = t.btnWaiting;
+
+            // Radar halkalarını etkinleştir
+            document.getElementById('radar1').style.display = 'block';
+            document.getElementById('radar2').style.display = 'block';
+
+            document.getElementById('fileName').textContent = t.waitingTitle;
+            document.getElementById('fileSize').textContent = t.waitingSub;
+            document.getElementById('extBadge').textContent = 'WAIT';
+          }
+        }
+      } catch (err) {
+        console.error('File poll error:', err);
+      }
+    }
+
+    // İlk yükleme ve 1.5 saniyelik periyodik durum sorgulama
+    setLanguage(currentLang);
+    checkFileStatus();
+    setInterval(checkFileStatus, 1500);
+
+    // =========================================================================
+    // 4. ÇİFT YÖNLÜ DOSYA YÜKLEME (UPLOAD)
+    // =========================================================================
+    const uploadInput = document.getElementById('uploadInput');
+    const progressWrapper = document.getElementById('progressWrapper');
+    const progressFill = document.getElementById('progressFill');
+    const statusMsg = document.getElementById('statusMsg');
+
+    uploadInput.addEventListener('change', async (e) => {
+      const files = e.target.files;
+      if (!files.length) return;
+
+      const t = I18N[currentLang];
+      progressWrapper.style.display = 'flex';
+      progressFill.style.width = '25%';
+      statusMsg.innerHTML = `<span>${t.uploading}</span>`;
+
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append('file_' + i, files[i], files[i].name);
+      }
+
+      try {
+        progressFill.style.width = '65%';
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (res.ok) {
+          progressFill.style.width = '100%';
+          statusMsg.innerHTML = `
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>${t.uploadSuccess}</span>
+          `;
+          setTimeout(() => {
+            progressWrapper.style.display = 'none';
+            progressFill.style.width = '0%';
+          }, 3500);
+        } else {
+          progressFill.style.width = '0%';
+          statusMsg.textContent = t.uploadError;
+        }
+      } catch (err) {
+        progressFill.style.width = '0%';
+        statusMsg.textContent = t.connError;
+      }
+    });
+  </script>
+</body>
+</html>

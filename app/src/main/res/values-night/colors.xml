@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Neutral Monochrome Obsidian (Karanlık Mod) -->
+    <color name="bg_root">#09090B</color>
+    <color name="bg_card">#121215</color>
+    <color name="bg_card_secondary">#18181B</color>
+    <color name="border_subtle">#27272A</color>
+    <color name="border_active">#3F3F46</color>
+
+    <color name="text_primary">#FAFAFA</color>
+    <color name="text_secondary">#A1A1AA</color>
+    <color name="text_muted">#71717A</color>
+
+    <color name="accent_emerald">#10B981</color>
+    <color name="accent_blue">#3B82F6</color>
+    <color name="accent_amber">#F59E0B</color>
+
+    <color name="btn_primary_bg">#FAFAFA</color>
+    <color name="btn_primary_text">#09090B</color>
+    <color name="btn_secondary_bg">#18181B</color>
+    <color name="btn_secondary_text">#FAFAFA</color>
+
+    <color name="mode_active_bg">#27272A</color>
+    <color name="mode_active_emerald_bg">#064E3B</color>
+
+    <!-- Material Theme Mappings (Night) -->
+    <color name="md_theme_primary">#FAFAFA</color>
+    <color name="md_theme_onPrimary">#09090B</color>
+    <color name="md_theme_primaryContainer">#18181B</color>
+    <color name="md_theme_onPrimaryContainer">#FAFAFA</color>
+    <color name="md_theme_background">#09090B</color>
+    <color name="md_theme_onBackground">#FAFAFA</color>
+    <color name="md_theme_surface">#121215</color>
+    <color name="md_theme_surfaceVariant">#18181B</color>
+    <color name="md_theme_onSurfaceVariant">#A1A1AA</color>
+</resources>
