@@ -29,6 +29,22 @@
 
 ---
 
+## 📱 Screenshots
+
+<p align="center">
+  <img src="art/screenshots/01_main_wifi_mode.png" width="180" alt="Main Dashboard" />
+  <img src="art/screenshots/02_wifi_single_tap.png" width="180" alt="Single-Tap NFC Ready" />
+  <img src="art/screenshots/03_bridge_step1_tap.png" width="180" alt="Hotspot Bridge Step 1" />
+  <img src="art/screenshots/04_bridge_step2_tap.png" width="180" alt="Transfer Stream Ready" />
+  <img src="art/screenshots/05_receiver_browser_screen.png" width="180" alt="Zero-Install Safari Receiver" />
+</p>
+
+<p align="center">
+  <sub><b>From left to right:</b> 1. Main Dashboard & Mode Selection &nbsp;|&nbsp; 2. Single-Tap NFC Ready &nbsp;|&nbsp; 3. Hotspot Bridge Step 1 &nbsp;|&nbsp; 4. Transfer Stream Ready &nbsp;|&nbsp; 5. iOS Safari / Browser Receiver</sub>
+</p>
+
+---
+
 ## How It Works
 
 TouchDrop provides two flexible operational modes:
