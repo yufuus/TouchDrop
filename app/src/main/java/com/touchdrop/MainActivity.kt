@@ -107,10 +107,11 @@ class MainActivity : AppCompatActivity() {
      * 2'li Mod Seçici Arayüz Güncellemesi (Aynı Wi-Fi vs Hızlı Köprü)
      */
     private fun updateModeUi(isHotspot: Boolean) {
-        binding.ivQrCode.visibility = View.GONE
-        binding.layoutIconContainer.visibility = View.VISIBLE
         if (!isHotspot) {
-            // Mod 1: Aynı Wi-Fi Aktif
+            // Mod 1: Aynı Wi-Fi Aktif (Saf NFC Modu)
+            binding.ivQrCode.visibility = View.GONE
+            binding.layoutIconContainer.visibility = View.VISIBLE
+
             binding.btnModeWifi.setBackgroundResource(R.drawable.bg_mode_active)
             binding.ivModeWifi.setColorFilter(ContextCompat.getColor(this, R.color.text_primary))
             binding.tvModeWifi.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
@@ -120,8 +121,18 @@ class MainActivity : AppCompatActivity() {
             binding.tvModeHotspot.setTextColor(ContextCompat.getColor(this, R.color.text_muted))
 
             binding.tvModeHint.text = getString(R.string.hint_mode_wifi)
+
+            if (selectedFile != null) {
+                binding.tvStatus.text = getString(R.string.status_prompt_tap_phone)
+                binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
+                binding.tvStatusSub.text = getString(R.string.status_sub_tap_phone)
+            } else {
+                binding.tvStatus.text = getString(R.string.status_prompt_select_file)
+                binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+                binding.tvStatusSub.text = getString(R.string.status_sub_select_file)
+            }
         } else {
-            // Mod 2: Hızlı Köprü Aktif
+            // Mod 2: Hızlı Köprü Aktif (Çevrimdışı / Dışarısı)
             binding.btnModeWifi.setBackgroundColor(Color.TRANSPARENT)
             binding.ivModeWifi.setColorFilter(ContextCompat.getColor(this, R.color.text_muted))
             binding.tvModeWifi.setTextColor(ContextCompat.getColor(this, R.color.text_muted))
@@ -131,12 +142,18 @@ class MainActivity : AppCompatActivity() {
             binding.tvModeHotspot.setTextColor(ContextCompat.getColor(this, R.color.accent_emerald))
 
             binding.tvModeHint.text = getString(R.string.hint_mode_hotspot)
-        }
 
-        if (selectedFile != null) {
-            binding.tvStatus.text = getString(R.string.status_prompt_tap_phone)
-            binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
-            binding.tvStatusSub.text = getString(R.string.status_sub_tap_phone)
+            if (hotspotManager.hotspotSsid != null && hotspotManager.hotspotPass != null) {
+                val qrBitmap = QrCodeUtils.generateWifiQrBitmap(hotspotManager.hotspotSsid!!, hotspotManager.hotspotPass!!, 400)
+                if (qrBitmap != null) {
+                    binding.ivQrCode.setImageBitmap(qrBitmap)
+                    binding.layoutIconContainer.visibility = View.GONE
+                    binding.ivQrCode.visibility = View.VISIBLE
+                    binding.tvStatus.text = getString(R.string.status_hotspot_qr_title)
+                    binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
+                    binding.tvStatusSub.text = getString(R.string.status_hotspot_qr_sub)
+                }
+            }
         }
     }
 
