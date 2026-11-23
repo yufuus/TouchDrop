@@ -42,7 +42,7 @@
     <string name="btn_done">Tamam</string>
 
     <string name="settings_title">Ayarlar ve Gizlilik</string>
-    <string name="settings_version_info">TouchDrop v1.8.9 • Çevrimdışı P2P &amp; Açık Kaynak</string>
+    <string name="settings_version_info">TouchDrop v1.9.0 • Çevrimdışı P2P &amp; Açık Kaynak</string>
     <string name="settings_section_theme">GÖRÜNÜM VE TEMA</string>
     <string name="theme_light">Aydınlık (Gri)</string>
     <string name="theme_obsidian">Obsidian</string>

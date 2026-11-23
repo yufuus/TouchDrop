@@ -42,7 +42,7 @@
     <string name="btn_done">Terminé</string>
 
     <string name="settings_title">Paramètres &amp; Confidentialité</string>
-    <string name="settings_version_info">TouchDrop v1.8.9 • P2P Hors ligne &amp; Open Source</string>
+    <string name="settings_version_info">TouchDrop v1.9.0 • P2P Hors ligne &amp; Open Source</string>
     <string name="settings_section_theme">APPARENCE &amp; THÈME</string>
     <string name="theme_light">Clair (Gris)</string>
     <string name="theme_obsidian">Obsidienne</string>

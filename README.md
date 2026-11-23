@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/yufuus/TouchDrop/releases"><img src="https://img.shields.io/badge/Release-v1.8.9-10B981?style=flat-square" alt="Release v1.8.9" /></a>
+  <a href="https://github.com/yufuus/TouchDrop/releases"><img src="https://img.shields.io/badge/Release-v1.9.0-10B981?style=flat-square" alt="Release v1.9.0" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="License" /></a>
   <img src="https://img.shields.io/badge/Android-API%2026%2B-orange?style=flat-square" alt="Android API 26+" />
   <img src="https://img.shields.io/badge/iOS-Supported%20(Zero--Install)-blueviolet?style=flat-square" alt="iOS Supported" />
@@ -85,7 +85,7 @@ No app installation is needed on the receiver's iPhone:
 
 Direct download links for the latest signed releases:
 
-- [Download TouchDrop v1.8.9 Release APK](https://pdf.gocer.me/agy/TouchDrop-v1.8.9-release.apk)
+- [Download TouchDrop v1.9.0 Release APK](https://pdf.gocer.me/agy/TouchDrop-v1.9.0-release.apk)
 - [Download Latest APK](https://pdf.gocer.me/agy/TouchDrop-latest.apk)
 
 ---

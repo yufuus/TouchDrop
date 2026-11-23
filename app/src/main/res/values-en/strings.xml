@@ -42,7 +42,7 @@
     <string name="btn_done">Done</string>
 
     <string name="settings_title">Settings &amp; Privacy</string>
-    <string name="settings_version_info">TouchDrop v1.8.9 • Offline P2P &amp; Open Source</string>
+    <string name="settings_version_info">TouchDrop v1.9.0 • Offline P2P &amp; Open Source</string>
     <string name="settings_section_theme">APPEARANCE &amp; THEME</string>
     <string name="theme_light">Light (Gray)</string>
     <string name="theme_obsidian">Obsidian</string>
