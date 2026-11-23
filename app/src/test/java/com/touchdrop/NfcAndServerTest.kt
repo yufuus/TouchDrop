@@ -117,10 +117,16 @@ class NfcAndServerTest {
     fun testWifiQrCodeFormat() {
         val ssid = "TouchDrop-Direct-45"
         val pass = "secret1234"
-        val wifiPayload = "WIFI:T:WPA;S:$ssid;P:$pass;;"
-        assertTrue(wifiPayload.startsWith("WIFI:T:WPA;"))
+        val wifiPayload = com.touchdrop.util.QrCodeUtils.generateWifiQrContent(ssid, pass)
+        assertTrue(wifiPayload.startsWith("WIFI:S:"))
         assertTrue(wifiPayload.contains("S:TouchDrop-Direct-45;"))
+        assertTrue(wifiPayload.contains("T:WPA;"))
         assertTrue(wifiPayload.contains("P:secret1234;;"))
+
+        val matrix = com.touchdrop.util.QrCodeUtils.generateQrMatrix(wifiPayload, 200)
+        org.junit.Assert.assertNotNull(matrix)
+        assertEquals(200, matrix?.width)
+        assertEquals(200, matrix?.height)
     }
 
     @Test
@@ -182,8 +188,9 @@ class NfcAndServerTest {
         val readWsc = byteArrayOf(0x00, 0xB0.toByte(), 0x00, 0x00, 0x7F)
         val wscResp = service.handleApdu(readWsc)
 
-        // NLEN'den sonra MIME kaydı 0xD2 (WSC) olmalı
-        assertEquals(0xD2.toByte(), wscResp[2])
+        // NLEN'den sonra çoklu kayıt (Multi-record: WSC + URI) gelmeli:
+        // Kayıt 1: MB=1, ME=0 (0x92) WSC
+        assertEquals(0x92.toByte(), wscResp[2])
         val mime = String(wscResp.copyOfRange(5, 5 + 23), StandardCharsets.US_ASCII)
         assertEquals("application/vnd.wfa.wsc", mime)
 

@@ -35,6 +35,7 @@ import com.touchdrop.ui.SettingsBottomSheet
 import com.touchdrop.util.FileUtils
 import com.touchdrop.util.HapticUtils
 import com.touchdrop.util.NetworkUtils
+import com.touchdrop.util.QrCodeUtils
 import com.touchdrop.util.ThemeManager
 import java.io.File
 import java.io.FileOutputStream
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun updateModeUi(isHotspot: Boolean) {
         if (!isHotspot) {
+            hideHotspotQr()
             // Mod 1: Aynı Wi-Fi Aktif
             binding.btnModeWifi.setBackgroundResource(R.drawable.bg_mode_active)
             binding.ivModeWifi.setColorFilter(ContextCompat.getColor(this, R.color.text_primary))
@@ -128,6 +130,32 @@ class MainActivity : AppCompatActivity() {
             binding.tvModeHotspot.setTextColor(ContextCompat.getColor(this, R.color.accent_emerald))
 
             binding.tvModeHint.text = getString(R.string.hint_mode_hotspot)
+        }
+    }
+
+    private fun showHotspotQr(ssid: String, pass: String) {
+        val qrBitmap = QrCodeUtils.generateWifiQrBitmap(ssid, pass, 400)
+        if (qrBitmap != null) {
+            binding.ivQrCode.setImageBitmap(qrBitmap)
+            binding.layoutIconContainer.visibility = View.GONE
+            binding.ivQrCode.visibility = View.VISIBLE
+            binding.tvStatus.text = getString(R.string.status_hotspot_qr_title)
+            binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
+            binding.tvStatusSub.text = getString(R.string.status_hotspot_qr_sub)
+        }
+    }
+
+    private fun hideHotspotQr() {
+        binding.ivQrCode.visibility = View.GONE
+        binding.layoutIconContainer.visibility = View.VISIBLE
+        if (selectedFile != null) {
+            binding.tvStatus.text = getString(R.string.status_prompt_tap_phone)
+            binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
+            binding.tvStatusSub.text = getString(R.string.status_sub_tap_phone)
+        } else {
+            binding.tvStatus.text = getString(R.string.status_prompt_select_file)
+            binding.tvStatus.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+            binding.tvStatusSub.text = getString(R.string.status_sub_select_file)
         }
     }
 
@@ -316,6 +344,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnInfo.setOnClickListener {
             HelpBottomSheet.newInstance(hotspotManager.isHotspotActive).show(supportFragmentManager, HelpBottomSheet.TAG)
         }
+
+        binding.ivQrCode.setOnClickListener {
+            Toast.makeText(this, getString(R.string.status_hotspot_qr_sub), Toast.LENGTH_SHORT).show()
+        }
     }
 
     // =========================================================================
@@ -341,9 +373,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvModeHint.text = "Köprü başlatılıyor..."
         hotspotManager.startBridge(
-            onStarted = { _, _, shareUrl ->
+            onStarted = { ssid, pass, shareUrl ->
                 activeShareUrl = shareUrl
                 updateModeUi(true)
+                showHotspotQr(ssid, pass)
                 Toast.makeText(
                     this@MainActivity,
                     getString(R.string.toast_hotspot_active),
@@ -352,6 +385,7 @@ class MainActivity : AppCompatActivity() {
             },
             onFailed = { reason ->
                 updateModeUi(false)
+                hideHotspotQr()
                 Toast.makeText(
                     this@MainActivity,
                     "Köprü başlatılamadı ($reason). Ayarlar açılıyor...",
@@ -361,6 +395,7 @@ class MainActivity : AppCompatActivity() {
             },
             onStopped = {
                 updateModeUi(false)
+                hideHotspotQr()
                 updateNfcUrl()
             }
         )
@@ -369,6 +404,7 @@ class MainActivity : AppCompatActivity() {
     private fun stopHotspotBridge() {
         hotspotManager.stopBridge()
         updateModeUi(false)
+        hideHotspotQr()
         updateNfcUrl()
         Toast.makeText(this, getString(R.string.toast_hotspot_stopped), Toast.LENGTH_SHORT).show()
     }
@@ -405,9 +441,13 @@ class MainActivity : AppCompatActivity() {
         binding.layoutSelectedFile.visibility = View.VISIBLE
         binding.tvSelectedFile.text = "${fileName} (${FileUtils.formatFileSize(tempFile.length())})"
 
-        binding.tvStatus.text = getString(R.string.status_prompt_tap_phone)
-        binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
-        binding.tvStatusSub.text = getString(R.string.status_sub_tap_phone)
+        if (hotspotManager.isHotspotActive && hotspotManager.hotspotSsid != null && hotspotManager.hotspotPass != null) {
+            showHotspotQr(hotspotManager.hotspotSsid!!, hotspotManager.hotspotPass!!)
+        } else {
+            binding.tvStatus.text = getString(R.string.status_prompt_tap_phone)
+            binding.tvStatus.setTextColor(Color.parseColor("#10B981"))
+            binding.tvStatusSub.text = getString(R.string.status_sub_tap_phone)
+        }
 
         updateNfcUrl()
         binding.btnTestInBrowser.visibility = View.VISIBLE

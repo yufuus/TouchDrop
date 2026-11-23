@@ -17,6 +17,8 @@
     <string name="status_sub_tap_phone">Junta los teléfonos espalda con espalda. La página se abrirá automáticamente.</string>
     <string name="status_wifi_sent">Wi-Fi transmitido</string>
     <string name="status_sub_wifi_sent">Toca de nuevo para abrir la página de descarga en el navegador.</string>
+    <string name="status_hotspot_qr_title">Puente Wi-Fi listo</string>
+    <string name="status_hotspot_qr_sub">iPhone: Escanea el QR con la cámara.\nAndroid: Acerca los teléfonos (NFC).</string>
     <string name="status_ready_opened">Transferencia iniciada</string>
     <string name="status_sub_ready_opened">Navegador abierto en el receptor. Descarga en curso.</string>
     <string name="status_file_received_title">¡Archivo recibido!</string>

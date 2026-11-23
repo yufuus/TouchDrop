@@ -17,6 +17,8 @@
     <string name="status_sub_tap_phone">Rücken an Rücken halten. Die Download-Seite öffnet sich automatisch.</string>
     <string name="status_wifi_sent">WLAN übermittelt</string>
     <string name="status_sub_wifi_sent">Erneut berühren, um Download-Seite im Browser zu öffnen.</string>
+    <string name="status_hotspot_qr_title">WLAN-Brücke bereit</string>
+    <string name="status_hotspot_qr_sub">iPhone: QR-Code mit Kamera scannen.\nAndroid: Smartphones aneinanderhalten (NFC).</string>
     <string name="status_ready_opened">Übertragung gestartet</string>
     <string name="status_sub_ready_opened">Browser geöffnet. Dateiübertragung läuft.</string>
     <string name="status_file_received_title">Datei empfangen!</string>

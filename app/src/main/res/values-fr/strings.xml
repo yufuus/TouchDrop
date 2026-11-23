@@ -17,6 +17,8 @@
     <string name="status_sub_tap_phone">Placez les téléphones dos à dos. La page de téléchargement s\'ouvrira automatiquement.</string>
     <string name="status_wifi_sent">Wi-Fi transmis</string>
     <string name="status_sub_wifi_sent">Touchez à nouveau pour ouvrir la page et démarrer le transfert.</string>
+    <string name="status_hotspot_qr_title">Pont Wi-Fi prêt</string>
+    <string name="status_hotspot_qr_sub">iPhone : Scannez le QR avec l\'appareil photo.\nAndroid : Rapprochez les téléphones (NFC).</string>
     <string name="status_ready_opened">Transfert initié</string>
     <string name="status_sub_ready_opened">Navigateur ouvert sur le récepteur. Transfert en cours.</string>
     <string name="status_file_received_title">Fichier reçu !</string>

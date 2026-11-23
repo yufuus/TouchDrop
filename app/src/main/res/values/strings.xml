@@ -17,6 +17,8 @@
     <string name="status_sub_tap_phone">Telefonları sırt sırta yaklaştırın. Karşı cihazda indirme sayfası açılacaktır.</string>
     <string name="status_wifi_sent">Wi-Fi İletildi</string>
     <string name="status_sub_wifi_sent">Sayfayı açmak ve indirmeyi başlatmak için bir kez daha dokundurun.</string>
+    <string name="status_hotspot_qr_title">Wi-Fi Köprüsü Hazır</string>
+    <string name="status_hotspot_qr_sub">iPhone: Kamerayı QR koda tutarak katılın.\nAndroid: Telefonu dokundurun (NFC).</string>
     <string name="status_ready_opened">Aktarım Başlatıldı</string>
     <string name="status_sub_ready_opened">Karşı cihazda tarayıcı açıldı. Dosya aktarılıyor.</string>
     <string name="status_file_received_title">Dosya Alındı!</string>

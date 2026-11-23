@@ -79,12 +79,21 @@ class TouchDropNfcService : HostApduService() {
         fun buildUriRecord(url: String, isFirst: Boolean = true, isLast: Boolean = true): ByteArray =
             WscTlvBuilder.buildUriRecord(url, isFirst, isLast)
 
+        fun buildCompositeHotspotMessage(ssid: String, pass: String, url: String): ByteArray {
+            val wscRecord = WscTlvBuilder.buildWscRecord(ssid, pass, isSingle = false)
+            val uriRecord = WscTlvBuilder.buildUriRecord(url, isFirst = false, isLast = true)
+            val combined = ByteArray(wscRecord.size + uriRecord.size)
+            System.arraycopy(wscRecord, 0, combined, 0, wscRecord.size)
+            System.arraycopy(uriRecord, 0, combined, wscRecord.size, uriRecord.size)
+            return combined
+        }
+
         fun buildActiveNdefMessage(): ByteArray {
             if (!isHotspotActive || hotspotSsid.isNullOrEmpty() || hotspotPass == null) {
                 return buildNdefMessage(currentShareUrl)
             }
             return if (autoStep == 1) {
-                buildWscRecord(hotspotSsid!!, hotspotPass!!, isSingle = true)
+                buildCompositeHotspotMessage(hotspotSsid!!, hotspotPass!!, currentShareUrl)
             } else {
                 buildNdefMessage(currentShareUrl)
             }

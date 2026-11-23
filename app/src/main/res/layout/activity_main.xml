@@ -194,13 +194,14 @@
                         app:tint="@color/text_primary" />
                 </FrameLayout>
 
-                <!-- Alternatif QR Kod Alanı (Gerekirse) -->
+                <!-- Wi-Fi ve Hızlı Köprü QR Kod Alanı -->
                 <ImageView
                     android:id="@+id/ivQrCode"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:background="#FFFFFF"
-                    android:padding="8dp"
+                    android:layout_width="190dp"
+                    android:layout_height="190dp"
+                    android:background="@drawable/bg_qr_card"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
                     android:visibility="gone" />
 
                 <!-- Büyük, Net Ana Durum Başlığı -->

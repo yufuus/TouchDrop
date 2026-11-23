@@ -17,6 +17,8 @@
     <string name="status_sub_tap_phone">Hold phones back-to-back. The download page will open automatically.</string>
     <string name="status_wifi_sent">Wi-Fi Transmitted</string>
     <string name="status_sub_wifi_sent">Tap again to open the download page and start transfer.</string>
+    <string name="status_hotspot_qr_title">Wi-Fi Bridge Ready</string>
+    <string name="status_hotspot_qr_sub">iPhone: Scan QR with Camera to join.\nAndroid: Tap phones together (NFC).</string>
     <string name="status_ready_opened">Transfer Initiated</string>
     <string name="status_sub_ready_opened">Browser opened on receiver phone. Transfer in progress.</string>
     <string name="status_file_received_title">File Received!</string>
